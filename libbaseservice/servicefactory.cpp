@@ -1,4 +1,3 @@
-#include "serviceconfig.h"
 #include "servicefactory.h"
 
 using namespace std;
