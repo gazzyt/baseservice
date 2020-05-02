@@ -1,0 +1,8 @@
+build
+/build*
+*.layout
+distribution
+.vs
+*.vsp
+*.vspx
+.vscode
