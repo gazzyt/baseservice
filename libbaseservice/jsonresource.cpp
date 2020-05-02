@@ -30,7 +30,7 @@ namespace BaseService
         {
             json responseBody;
 
-            int status = DoGet(responseBody);
+            int status = DoGet(session->get_request(), responseBody);
 
             SendJsonResponse(session, status, responseBody);
         });
@@ -42,7 +42,7 @@ namespace BaseService
         {
             json responseBody;
 
-            int status = DoPost(requestBody, responseBody);
+            int status = DoPost(session->get_request(), requestBody, responseBody);
 
             SendJsonResponse(session, status, responseBody);
         });
