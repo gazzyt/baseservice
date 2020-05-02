@@ -18,7 +18,6 @@ project( "libbaseservice" )
 set( BUILD_LIBBASESERVICE_MANIFEST
     servicefactory.cpp
     servicelogger.cpp
-    serviceconfig.cpp
     jsonclient.cpp
     jsonservice.cpp
     jsonresource.cpp
@@ -27,7 +26,6 @@ set( BUILD_LIBBASESERVICE_MANIFEST
 set( BUILD_LIBBASESERVICE_MANIFEST_HEADERS
     servicefactory.h
     servicelogger.h
-    serviceconfig.h
     jsonclient.h
     jsonservice.h
     jsonresource.h
