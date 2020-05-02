@@ -22,10 +22,10 @@ namespace BaseService
 
 	private:
 		void PostHandler( const std::shared_ptr< restbed::Session > session );
-		virtual int DoPost(const std::shared_ptr<const restbed::Request> request, nlohmann::json& /*requestBody*/, nlohmann::json& /*responseBody*/) { return 405; }
+		virtual int DoPost(const std::shared_ptr<const restbed::Request> /*request*/, nlohmann::json& /*requestBody*/, nlohmann::json& /*responseBody*/) { return 405; }
 
 		void GetHandler( const std::shared_ptr< restbed::Session > session );
-		virtual int DoGet(const std::shared_ptr<const restbed::Request> request, nlohmann::json& /*responseBody*/) { return 405; }
+		virtual int DoGet(const std::shared_ptr<const restbed::Request> /*request*/, nlohmann::json& /*responseBody*/) { return 405; }
 
 		static void FetchRequestJson(const std::shared_ptr<restbed::Session> session, const std::function< void ( const std::shared_ptr< restbed::Session >, const nlohmann::json& ) >& callback );
 
