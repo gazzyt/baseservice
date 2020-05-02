@@ -12,7 +12,7 @@ namespace BaseService
 	public:
 		ServiceFactory() = delete;
 
-        static std::unique_ptr<JsonService> MakeService(std::shared_ptr<ServiceConfig> serviceConfig, uint16_t port);
+        static std::unique_ptr<JsonService> MakeService(uint16_t port);
 
 	};
 }
