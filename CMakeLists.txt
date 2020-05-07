@@ -16,31 +16,16 @@ enable_testing()
 # Dependencies
 #
 
-include(DownloadProject)
+#include(DownloadProject)
 
 # Restbed
 
-set(BUILD_SSL OFF CACHE BOOL "Build secure socket layer support." FORCE)
-
-download_project(PROJ                restbed
-                 GIT_REPOSITORY      https://github.com/Corvusoft/restbed.git
-                 GIT_TAG             4.6
-                 ${UPDATE_DISCONNECTED_IF_AVAILABLE}
-)
-
-add_subdirectory(${restbed_SOURCE_DIR} ${restbed_BINARY_DIR})
+find_path(restbed_INCLUDE_DIR restbed)
+find_library(restbed_LIBRARY NAMES librestbed.a)
 
 # nlohmann/json
 
-set(JSON_BuildTests OFF CACHE BOOL "Build json tests." FORCE)
-
-download_project(PROJ                json
-                 GIT_REPOSITORY      https://github.com/nlohmann/json.git
-                 GIT_TAG             v3.7.3
-                 ${UPDATE_DISCONNECTED_IF_AVAILABLE}
-)
-
-add_subdirectory(${json_SOURCE_DIR} ${json_BINARY_DIR})
+find_path(json_INCLUDE_DIR nlohmann/json.hpp)
 
 #
 # Build

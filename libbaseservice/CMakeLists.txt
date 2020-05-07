@@ -36,10 +36,11 @@ set( BUILD_LIBBASESERVICE_MANIFEST_HEADERS
 
 add_library( libbaseservice ${BUILD_LIBBASESERVICE_MANIFEST} ${BUILD_LIBBASESERVICE_MANIFEST_HEADERS})
 
-target_link_libraries( libbaseservice PUBLIC restbed nlohmann_json::nlohmann_json)
+target_link_libraries( libbaseservice PUBLIC ${restbed_LIBRARY} )
 target_include_directories( libbaseservice 
 	PUBLIC  "${CMAKE_CURRENT_SOURCE_DIR}"
-          "${restbed_SOURCE_DIR}/source"
+          "${restbed_INCLUDE_DIR}"
+          ${json_INCLUDE_DIR}
 	)
 	
 target_compile_options(libbaseservice
