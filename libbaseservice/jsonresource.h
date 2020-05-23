@@ -2,6 +2,7 @@
 #define JSONRESOURCE_H
 
 #include <memory>
+#include <set>
 
 #include <restbed>
 #include <nlohmann/json.hpp>
@@ -13,6 +14,7 @@ namespace BaseService
 	protected:
 		JsonResource() = delete;
     	JsonResource(const std::string& urlPath);
+    	JsonResource(const std::set<std::string>& urlPaths);
 
 		void EnableHttpGet();
 		void EnableHttpPost();
