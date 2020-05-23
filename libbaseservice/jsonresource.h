@@ -13,7 +13,6 @@ namespace BaseService
 	{
 	protected:
 		JsonResource() = delete;
-    	JsonResource(const std::string& urlPath);
     	JsonResource(const std::set<std::string>& urlPaths);
 
 		void EnableHttpGet();

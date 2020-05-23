@@ -7,12 +7,6 @@ using json = nlohmann::json;
 
 namespace BaseService
 {
-    JsonResource::JsonResource(const std::string& urlPath)
-    :   m_resource{make_shared< restbed::Resource >()}
-    {
-        m_resource->set_path(urlPath);
-    }
-
     JsonResource::JsonResource(const std::set<std::string>& urlPaths)
     :   m_resource{make_shared< restbed::Resource >()}
     {
