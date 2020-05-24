@@ -1,20 +1,20 @@
 #include <memory>
 #include <string>
 #include <nlohmann/json.hpp>
-#include "sampleresource.h"
+#include "personresource.h"
 
 using namespace std;
 using namespace restbed;
 using json = nlohmann::json;
 
-SampleResource::SampleResource()
-:   BasicJsonResource({ "/sample/{id: .*}", "/sample" })
+PersonResource::PersonResource()
+:   JsonResource({ "/person/{id: .*}", "/person" })
 {
     EnableHttpGet();
     EnableHttpPost();
 }
 
-int SampleResource::DoGet(const std::shared_ptr<const restbed::Request> request, nlohmann::json& responseBody)
+int PersonResource::DoGet(const std::shared_ptr<const restbed::Request> request, nlohmann::json& responseBody)
 {
     auto id = request->get_path_parameter("id");
 
@@ -27,7 +27,7 @@ int SampleResource::DoGet(const std::shared_ptr<const restbed::Request> request,
     return OK;
 }
 
-int SampleResource::DoPost(const std::shared_ptr<const restbed::Request> request, const nlohmann::json& requestBody, nlohmann::json& responseBody)
+int PersonResource::DoPost(const std::shared_ptr<const restbed::Request> /*request*/, const Person& /*requestBody*/, nlohmann::json& /*responseBody*/)
 {
     return CREATED;
 }

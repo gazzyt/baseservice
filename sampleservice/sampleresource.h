@@ -3,9 +3,9 @@
 
 #include <restbed>
 
-#include "jsonresource.h"
+#include "basicjsonresource.h"
 
-class SampleResource : public BaseService::JsonResource
+class SampleResource : public BaseService::BasicJsonResource
 {
 public:
 	SampleResource();

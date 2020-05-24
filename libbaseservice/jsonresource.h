@@ -7,36 +7,39 @@
 #include <restbed>
 #include <nlohmann/json.hpp>
 
+#include "basicjsonresource.h"
+#include "exception/validationexception.h"
+
 namespace BaseService
 {
-	class JsonResource
+	template <typename T> class JsonResource : public BasicJsonResource
 	{
 	protected:
 		JsonResource() = delete;
-    	JsonResource(const std::set<std::string>& urlPaths);
-		virtual ~JsonResource();
-
-		void EnableHttpGet();
-		void EnableHttpPost();
-
-		int Error(int status, std::string&& message, nlohmann::json& responseBody);
-
-	public:
-	    auto Resource() const -> const std::shared_ptr<const restbed::Resource> { return m_resource; }
+    	JsonResource(const std::set<std::string>& urlPaths)
+		:	BasicJsonResource(urlPaths)
+		{}
 
 	private:
-		void PostHandler( const std::shared_ptr< restbed::Session > session );
-		virtual int DoPost(const std::shared_ptr<const restbed::Request> /*request*/, const nlohmann::json& /*requestBody*/, nlohmann::json& /*responseBody*/) { return 405; }
+		virtual int DoPost(const std::shared_ptr<const restbed::Request> request, const nlohmann::json& requestBody, nlohmann::json& responseBody)
+		{
+			auto requestEntity = requestBody.get<T>();
 
-		void GetHandler( const std::shared_ptr< restbed::Session > session );
-		virtual int DoGet(const std::shared_ptr<const restbed::Request> /*request*/, nlohmann::json& /*responseBody*/) { return 405; }
-
-		static void FetchRequestJson(const std::shared_ptr<restbed::Session> session, const std::function< void ( const std::shared_ptr< restbed::Session >, const nlohmann::json& ) >& callback );
-
-		static void SendJsonResponse(const std::shared_ptr<restbed::Session> session, int status, nlohmann::json body);
+			try
+			{
+				requestEntity.Validate();
+			}
+			catch(const ValidationException& e)
+			{
+				return Error(restbed::BAD_REQUEST, e.what(), responseBody);
+			}
+			
+			return DoPost(request, requestEntity, responseBody);
+		}
 
 	protected:
-		std::shared_ptr<restbed::Resource> m_resource;
+		virtual int DoPost(const std::shared_ptr<const restbed::Request> /*request*/, const T& /*requestBody*/, nlohmann::json& /*responseBody*/) { return 405; }
+
 	};
 }
 

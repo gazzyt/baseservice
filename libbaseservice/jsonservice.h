@@ -5,7 +5,7 @@
 
 #include <restbed>
 
-#include <jsonresource.h>
+#include <basicjsonresource.h>
 
 namespace BaseService
 {
@@ -15,11 +15,11 @@ namespace BaseService
 		JsonService() = delete;
     	JsonService(std::shared_ptr<restbed::Settings> settings);
 
-		void Publish(std::shared_ptr<JsonResource> resource);
+		void Publish(std::shared_ptr<BasicJsonResource> resource);
 		void Start();
 
 	private:
-		std::vector<std::shared_ptr<JsonResource> > m_resources;
+		std::vector<std::shared_ptr<BasicJsonResource> > m_resources;
 		std::shared_ptr<restbed::Settings> m_settings;
 		std::unique_ptr<restbed::Service> m_service;
 	};

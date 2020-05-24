@@ -15,7 +15,7 @@ namespace BaseService
         m_service->set_logger(make_shared< ServiceLogger>());
     }
 
-    void JsonService::Publish(std::shared_ptr<JsonResource> resource)
+    void JsonService::Publish(std::shared_ptr<BasicJsonResource> resource)
     {
         m_resources.push_back(resource);
         m_service->publish(resource->Resource());

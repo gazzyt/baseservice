@@ -20,7 +20,7 @@ set( BUILD_LIBBASESERVICE_MANIFEST
     servicelogger.cpp
     jsonclient.cpp
     jsonservice.cpp
-    jsonresource.cpp
+    basicjsonresource.cpp
 )
 
 set( BUILD_LIBBASESERVICE_MANIFEST_HEADERS
@@ -28,10 +28,12 @@ set( BUILD_LIBBASESERVICE_MANIFEST_HEADERS
     servicelogger.h
     jsonclient.h
     jsonservice.h
+    basicjsonresource.h
     jsonresource.h
     exception/serviceexception.h
     exception/requestexception.h
     exception/externalserviceexception.h
+    exception/validationexception.h
 )
 
 add_library( libbaseservice ${BUILD_LIBBASESERVICE_MANIFEST} ${BUILD_LIBBASESERVICE_MANIFEST_HEADERS})

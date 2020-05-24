@@ -16,10 +16,14 @@ project( "sampleservice" )
 set( BUILD_SAMPLESERVICE_MANIFEST
 	main.cpp
   sampleresource.cpp
+  personresource.cpp
+  person.cpp
 )
 
 set( BUILD_SAMPLESERVICE_MANIFEST_HEADERS
   sampleresource.h
+  personresource.h
+  person.h
 )
 
 add_executable( sampleservice ${BUILD_SAMPLESERVICE_MANIFEST} ${BUILD_SAMPLESERVICE_MANIFEST_HEADERS})
