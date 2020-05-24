@@ -32,6 +32,7 @@ find_path(json_INCLUDE_DIR nlohmann/json.hpp)
 #
 
 add_subdirectory (libbaseservice)
+add_subdirectory (sampleservice)
 
 #
 # Install
