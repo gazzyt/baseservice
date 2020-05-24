@@ -13,6 +13,9 @@ namespace BaseService
         m_resource->set_paths(urlPaths);
     }
 
+    JsonResource::~JsonResource()
+    {}
+
 	void JsonResource::EnableHttpGet()
     {
         m_resource->set_method_handler("GET", [this](const std::shared_ptr< restbed::Session > session){GetHandler(session);});
