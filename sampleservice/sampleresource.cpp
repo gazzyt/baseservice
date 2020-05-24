@@ -20,7 +20,7 @@ int SampleResource::DoGet(const std::shared_ptr<const restbed::Request> request,
 
     if (id.empty())
     {
-        return BAD_REQUEST;
+        return Error(BAD_REQUEST, "Parameter {id} must be provided", responseBody);
     }
 
     responseBody["name"] = "Rod";

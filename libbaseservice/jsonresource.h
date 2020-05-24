@@ -19,6 +19,8 @@ namespace BaseService
 		void EnableHttpGet();
 		void EnableHttpPost();
 
+		int Error(int status, std::string&& message, nlohmann::json& responseBody);
+
 	public:
 	    auto Resource() const -> const std::shared_ptr<const restbed::Resource> { return m_resource; }
 

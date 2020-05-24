@@ -26,6 +26,13 @@ namespace BaseService
         m_resource->set_method_handler("POST", [this](const std::shared_ptr< restbed::Session > session){PostHandler(session);});
     }
 
+	int JsonResource::Error(int status, std::string&& message, nlohmann::json& responseBody)
+    {
+        responseBody["status"] = status;
+        responseBody["message"] = message;
+        return status;
+    }
+
 
 	void JsonResource::GetHandler( const std::shared_ptr< restbed::Session > session )
     {
