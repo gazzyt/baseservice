@@ -18,6 +18,7 @@ namespace BaseService
 
 		void EnableHttpGet();
 		void EnableHttpPost();
+		void EnableHttpDelete();
 
 		int Error(int status, std::string&& message, nlohmann::json& responseBody);
 
@@ -30,6 +31,9 @@ namespace BaseService
 
 		void GetHandler( const std::shared_ptr< restbed::Session > session );
 		virtual int DoGet(const std::shared_ptr<const restbed::Request> /*request*/, nlohmann::json& /*responseBody*/) { return 405; }
+
+		void DeleteHandler( const std::shared_ptr< restbed::Session > session );
+		virtual int DoDelete(const std::shared_ptr<const restbed::Request> /*request*/, nlohmann::json& /*responseBody*/) { return 405; }
 
 		static void FetchRequestJson(const std::shared_ptr<restbed::Session> session, const std::function< void ( const std::shared_ptr< restbed::Session >, const nlohmann::json& ) >& callback );
 

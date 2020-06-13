@@ -26,6 +26,11 @@ namespace BaseService
         m_resource->set_method_handler("POST", [this](const std::shared_ptr< restbed::Session > session){PostHandler(session);});
     }
 
+	void BasicJsonResource::EnableHttpDelete()
+    {
+        m_resource->set_method_handler("DELETE", [this](const std::shared_ptr< restbed::Session > session){DeleteHandler(session);});
+    }
+
 	int BasicJsonResource::Error(int status, std::string&& message, nlohmann::json& responseBody)
     {
         responseBody["status"] = status;
@@ -53,6 +58,18 @@ namespace BaseService
             json responseBody;
 
             int status = DoPost(session->get_request(), requestBody, responseBody);
+
+            SendJsonResponse(session, status, responseBody);
+        });
+    }
+
+	void BasicJsonResource::DeleteHandler( const std::shared_ptr< restbed::Session > session )
+    {
+		FetchRequestJson(session, [this](const std::shared_ptr<Session> session, const json& requestBody)
+        {
+            json responseBody;
+
+            int status = DoDelete(session->get_request(), responseBody);
 
             SendJsonResponse(session, status, responseBody);
         });

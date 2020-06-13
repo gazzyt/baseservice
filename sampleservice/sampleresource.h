@@ -13,6 +13,7 @@ public:
 private:
 	virtual int DoGet(const std::shared_ptr<const restbed::Request> request, nlohmann::json& responseBody);
 	virtual int DoPost(const std::shared_ptr<const restbed::Request> request, const nlohmann::json& requestBody, nlohmann::json& responseBody);
+	virtual int DoDelete(const std::shared_ptr<const restbed::Request> request, nlohmann::json& responseBody);
 
 };
 
