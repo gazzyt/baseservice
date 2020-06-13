@@ -10,22 +10,20 @@ project( "baseservice-root" VERSION 1.0.0)
 set(CMAKE_CXX_STANDARD 17 CACHE STRING "C++ standard to be used")
 set(UPDATE_DISCONNECTED_IF_AVAILABLE "UPDATE_DISCONNECTED 1")
 
+# Set the build type if it isn't already
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
+
+IF( NOT DEFINED BUILD_STATIC )
+   SET( BUILD_STATIC YES )
+ENDIF()
+
 enable_testing()
 
 #
 # Dependencies
 #
-
-#include(DownloadProject)
-
-# Restbed
-
-find_path(restbed_INCLUDE_DIR restbed)
-find_library(restbed_LIBRARY NAMES librestbed.a)
-
-# nlohmann/json
-
-find_path(json_INCLUDE_DIR nlohmann/json.hpp)
 
 #
 # Build

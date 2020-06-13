@@ -29,16 +29,19 @@ set( BUILD_SAMPLESERVICE_MANIFEST_HEADERS
 add_executable( sampleservice ${BUILD_SAMPLESERVICE_MANIFEST} ${BUILD_SAMPLESERVICE_MANIFEST_HEADERS})
 
 target_link_libraries( sampleservice PRIVATE libbaseservice )
-target_link_libraries( sampleservice
-  PRIVATE
-    "$<$<CXX_COMPILER_ID:GNU>:-static-libgcc -static-libstdc++ -static -no-pie>"
-#    $<$<CXX_COMPILER_ID:Clang>:
-#      # clang warning flags
- #   >
-#    $<$<CXX_COMPILER_ID:MSVC>:
-#      # MSVC warning flags
-#    >
-)
+
+IF( BUILD_STATIC )
+  target_link_libraries( sampleservice
+    PRIVATE
+      "$<$<CXX_COMPILER_ID:GNU>:-static-libgcc -static-libstdc++ -static -no-pie>"
+  #    $<$<CXX_COMPILER_ID:Clang>:
+  #      # clang warning flags
+  #   >
+  #    $<$<CXX_COMPILER_ID:MSVC>:
+  #      # MSVC warning flags
+  #    >
+  )
+ENDIF()
 
 target_compile_options( sampleservice
   PRIVATE

@@ -11,6 +11,17 @@ project( "libbaseservice" )
 # Dependencies
 #
 
+# Restbed
+
+find_path(restbed_INCLUDE_DIR restbed)
+find_library(restbed_LIBRARY NAMES librestbed.a)
+find_package(Threads REQUIRED)
+
+# nlohmann/json
+
+find_path(json_INCLUDE_DIR nlohmann/json.hpp)
+
+
 #
 # Build
 #
@@ -38,7 +49,7 @@ set( BUILD_LIBBASESERVICE_MANIFEST_HEADERS
 
 add_library( libbaseservice ${BUILD_LIBBASESERVICE_MANIFEST} ${BUILD_LIBBASESERVICE_MANIFEST_HEADERS})
 
-target_link_libraries( libbaseservice PUBLIC ${restbed_LIBRARY} )
+target_link_libraries( libbaseservice PUBLIC ${restbed_LIBRARY} Threads::Threads )
 target_include_directories( libbaseservice 
 	PUBLIC  "${CMAKE_CURRENT_SOURCE_DIR}"
           "${restbed_INCLUDE_DIR}"
