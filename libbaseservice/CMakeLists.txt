@@ -14,7 +14,7 @@ project( "libbaseservice" )
 # Restbed
 
 find_path(restbed_INCLUDE_DIR restbed)
-find_library(restbed_LIBRARY NAMES librestbed.a)
+find_library(restbed_LIBRARY NAMES librestbed.a restbed.lib)
 find_package(Threads REQUIRED)
 
 # nlohmann/json
