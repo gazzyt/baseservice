@@ -6,7 +6,7 @@ using namespace std;
 using namespace restbed;
 using namespace BaseService;
 
-int main(int /*argc*/, char **/*argv*/) {
+int main(int /*argc*/, char ** /*argv*/) {
 
     auto service = ServiceFactory::MakeService(1999);
 
